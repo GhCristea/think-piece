@@ -2,7 +2,7 @@ import React from 'react'
 import Post from './Post';
 import AddPost from './AddPost';
 
-const Posts = ({ posts, onCreate }) => {
+export default function Posts({ posts, onCreate }){
   return (
     <section className="Posts">
       <AddPost onCreate={onCreate} />
@@ -10,5 +10,3 @@ const Posts = ({ posts, onCreate }) => {
     </section>
   )
 }
-
-export default Posts;

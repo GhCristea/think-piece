@@ -1,45 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class SignIn extends Component {
-  state = { email: '', password: '' };
+function SignIn()  {
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.setState({ [name]: value });
+  const handleChangeEmail = event => {
+    setEmail(event.target.value);
+  };
+  const handleChangePassword = event => {
+    setPassword(event.target.value);
   };
 
-  handleSubmit = event => {
+  
+
+  const handleSubmit = event => {
     event.preventDefault();
 
-    this.setState({ email: '', password: '' });
+    setEmail('');
+    setPassword('');
   };
 
-  render() {
-    const { email, password } = this.state;
-
     return (
-      <form className="SignIn" onSubmit={this.handleSubmit}>
+      <form className="SignIn" onSubmit={handleSubmit}>
         <h2>Sign In</h2>
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={email}
-          onChange={this.handleChange}
+          onChange={handleChangeEmail}
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={password}
-          onChange={this.handleChange}
+          onChange={handleChangePassword}
         />
         <input type="submit" value="Sign In" />
         <button>Sign In With Google</button>
       </form>
     );
   }
-}
+
 
 export default SignIn;
