@@ -1,9 +1,14 @@
 import React, {  useState } from 'react';
+import {addPostToFirestore} from '../utils';
 
-function AddPost({onCreate}) {
+function NewPost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
+  const handleCreate = post => {
+    addPostToFirestore(post)
+  };
+    
   const handleChangeTitle = event => {
     setTitle(event.target.value);
   };
@@ -17,7 +22,6 @@ function AddPost({onCreate}) {
     event.preventDefault();
 
     const post = {
-      id: Date.now().toString(),
       title,
       content,
       user: {
@@ -31,7 +35,7 @@ function AddPost({onCreate}) {
       createdAt: new Date(),
     }
 
-    onCreate(post);
+    addPostToFirestore(post);
 
   };
 
@@ -56,4 +60,4 @@ function AddPost({onCreate}) {
     );
   }
 
-export default AddPost;
+export default NewPost;

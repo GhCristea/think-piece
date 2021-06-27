@@ -1,8 +1,16 @@
 import React from 'react';
 
 import moment from 'moment';
+import { removePost} from '../utils';
 
-const Post = ({ title, content, user, createdAt, stars, comments }) => {
+
+const Post = ({ title, content, user, createdAt, stars, comments, id }) => {
+
+
+  const handleRemove = id => {
+    removePost(id);
+  }
+
   return (
     <article className="Post">
       <div className="Post--content">
@@ -28,7 +36,7 @@ const Post = ({ title, content, user, createdAt, stars, comments }) => {
         </div>
         <div>
           <button className="star">Star</button>
-          <button className="delete">Delete</button>
+          <button className="delete" onClick={()=>handleRemove(id)}>Delete</button>
         </div>
       </div>
     </article>

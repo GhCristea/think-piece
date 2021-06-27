@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+// import firestore from 'firebase/firebase-firestore'
 import Posts from './Posts';
+import { subscribePostsChanges} from '../utils';
 
 const initialPosts = [
   {
@@ -36,14 +37,17 @@ const initialPosts = [
 function Application() {
   const [posts, setPosts] = useState(initialPosts);
   
-  const handleCreate = post => {
-    setPosts([post, ...posts]);
-  };
-
-    return (
+ 
+  useEffect(() => {
+    const unsubscribe = subscribePostsChanges(setPosts);
+    return unsubscribe;
+  });
+  
+  
+  return (
       <main className="Application">
         <h1>Think Piece</h1>
-        <Posts posts={posts} onCreate={handleCreate} />
+        <Posts posts={posts} />
       </main>
     );
 }
