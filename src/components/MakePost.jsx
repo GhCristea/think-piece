@@ -1,13 +1,11 @@
 import React, {  useState } from 'react';
-import {addPostToFirestore} from '../utils';
+import {addPostToFirestore} from '../utils/real-time';
 
-function NewPost() {
+function MakePost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const handleCreate = post => {
-    addPostToFirestore(post)
-  };
+
     
   const handleChangeTitle = event => {
     setTitle(event.target.value);
@@ -36,7 +34,6 @@ function NewPost() {
     }
 
     addPostToFirestore(post);
-
   };
 
     return (
@@ -60,4 +57,4 @@ function NewPost() {
     );
   }
 
-export default NewPost;
+export default MakePost;
